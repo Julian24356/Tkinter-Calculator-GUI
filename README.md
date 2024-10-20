@@ -1,5 +1,3 @@
-(https://img.shields.io/badge/python-3.12.7-3776ab)
-(https://img.shields.io/badge/tkinter-8.6.13-red)
 # Tkinter-Calculator-GUI
 
 ## Description
