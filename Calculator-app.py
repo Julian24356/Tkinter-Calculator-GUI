@@ -8,35 +8,35 @@ def press_button(out_button):
     global expression
     global display
     if(out_button!=""):
-        expression = expression + out_button
+        expression = expression + str(out_button)
         display.set(str(expression))
 
 def equal_press():
     global expression
     global display
-    display.set(eval(str(expression)))
-    expression = display.get()
+    expression = str(eval(str(expression)))
+    display.set(expression)
 
 def clear():
     global expression
     global display
     expression=""
-    display.set("0")
+    display.set("")
 
 if __name__ == "__main__": 
     # config
     root = tk.Tk()
-    root.geometry("400x400")
+    root.geometry("340x340")
     root.title("Calculator")
     root.configure(background="sky blue")
     display = tk.StringVar()
-    expression_field = tk.Entry(root, textvariable=display,background="sky blue", font=("Arial",18,'bold'))
-    expression_field.grid(row=0, column=0, columnspan=3, padx=10, pady=10)
+    expression_field = tk.Entry(root, textvariable=display,background="sky blue", font=("Arial",20,'bold'))
+    expression_field.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 
     button_padx=5
     button_pady=5
 
-    button_clear = tk.Button(root, text="",command=lambda: clear(), height=2, width=7)
+    button_clear = tk.Button(root, text="C",command=lambda: clear(), height=2, width=7)
     button_clear.grid(row=1, column=0, padx=button_padx, pady=button_pady)
 
     button_div = tk.Button(root, text="/",command=lambda: press_button("/"), height=2, width=7)
@@ -79,8 +79,12 @@ if __name__ == "__main__":
     button3.grid(row=4, column=2, padx=button_padx, pady=button_pady)
 
     button_equal = tk.Button(root, text="=", command=lambda: equal_press(), height=6, width=7)
-    button_equal.grid(row=4, column=3, padx=button_padx, pady=button_pady)
+    button_equal.grid(row=4, column=3, padx=button_padx, pady=button_pady, rowspan=2)
 
+    button0 = tk.Button(root, text="0", command=lambda: press_button("0"), height=2, width=16)
+    button0.grid(row=5, column=0, columnspan=2, padx=button_padx, pady=button_pady)
 
+    button_dot = tk.Button(root, text=".", command=lambda: press_button("."), height=2, width=7)
+    button_dot.grid(row=5, column=2, padx=button_padx, pady=button_pady)
 
     root.mainloop()
